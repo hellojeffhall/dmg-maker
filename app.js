@@ -7,12 +7,6 @@ var args = process.argv ;
 var sourceFolder = process.argv[2] ;
 var targetName   = process.argv[3] + '.dmg' ;
 
-var exec_string = ' ' + 'hdiutil create -format UDZO ' + 
-                  ' ' + '-srcfolder ' + sourceFolder +  
-                  ' ' + targetName + '.dmg' + 
-                  ' ' + '-puppetstrings'
-;
-
 console.log();
 console.log( 'Creating a dmg called \'' + targetName + '\' from \'' + sourceFolder +'\'.' );
 console.log();
@@ -47,7 +41,6 @@ Parse_puppetstrings.prototype._transform = function( chunk, enc, onDone ){
   var type = els[0] ;
   var value = els[1] ;
   var output;
-
   
   if( type==='PERCENT' ) {
       //
