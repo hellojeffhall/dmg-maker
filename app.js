@@ -1,4 +1,3 @@
-var sys = require('sys');
 var exec = require('child_process').exec ;
 var child ;
 
@@ -9,7 +8,7 @@ var targetName   = process.argv[3] ;
 
 var exec_string = 'hdiutil create -format UDZO ' + 
                   '-srcfolder ' + sourceFolder +  
-                  targetName + '.dmg'
+                  ' ' + targetName + '.dmg'
 ;
 
 console.log();
