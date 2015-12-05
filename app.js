@@ -1,4 +1,6 @@
 var spawn = require('child_process').spawn ;
+var inherits = require('util').inherits ;
+var Transform = require('stream').Transform ;
 
 var args = process.argv ;
 
@@ -32,5 +34,19 @@ var command = spawn(
   ]
 );
 
-command.stdout.pipe(process.stdout) ;
-command.stderr.pipe(process.stdout) ;
+var Parse_puppetstrings = function() {
+  Transform.call(this) ;
+};
+inherits( Parse_puppetstrings , Transform ) ;
+
+Parse_puppetstrings.prototype._transform = function( chunk, enc, onDone ){
+  this.push( chunk );
+  onDone();  
+};
+
+command.stdout
+  .pipe( new Parse_puppetstrings )
+  .pipe(process.stdout) ;
+command.stderr
+  .pipe( new Parse_puppetstrings )
+  .pipe(process.stdout) ;
