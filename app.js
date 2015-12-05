@@ -1,36 +1,36 @@
-var exec = require('child_process').exec ;
-var child ;
+var spawn = require('child_process').spawn ;
 
 var args = process.argv ;
 
 var sourceFolder = process.argv[2] ;
-var targetName   = process.argv[3] ;
+var targetName   = process.argv[3] + '.dmg' ;
 
-var exec_string = 'hdiutil create -format UDZO ' + 
-                  '-srcfolder ' + sourceFolder +  
-                  ' ' + targetName + '.dmg'
+var exec_string = ' ' + 'hdiutil create -format UDZO ' + 
+                  ' ' + '-srcfolder ' + sourceFolder +  
+                  ' ' + targetName + '.dmg' + 
+                  ' ' + '-puppetstrings'
 ;
 
 console.log();
-console.log( process.env.USER + '$ ' + exec_string );
+console.log( 'STARTING: ' + exec_string );
 console.log();
 
 /*--------
 Mac only
 --------*/
 
-exec( exec_string , function( err , stdout  , stderr) {
+var command = spawn( 
+  'hdiutil' , 
+  [
+    'create'     ,
+    '-format'    ,
+    'UDZO'       ,
+    '-srcfolder' ,
+    sourceFolder ,
+    targetName   ,
+    '-puppetstrings'
+  ]
+);
 
-  if (stdout.length !== 0 ) {
-    console.log(stdout) ;
-  }
-
-  if (stderr.length !== 0 ) {
-    console.log( stderr ) ;
-  }
-
-
-  if( err !== null ) {
-    console.log(err) ;
-  }
-});
+command.stdout.pipe(process.stdout) ;
+command.stderr.pipe(process.stdout) ;
