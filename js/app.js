@@ -1,3 +1,4 @@
+ 
 var spawn = require('child_process').spawn ;
 var inherits = require('util').inherits ;
 var Transform = require('stream').Transform ;
@@ -89,3 +90,5 @@ command.stdout
   .pipe(process.stdout) ;
 command.stderr
   .pipe(process.stdout) ;
+
+};

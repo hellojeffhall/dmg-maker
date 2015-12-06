@@ -1,8 +1,8 @@
-const remote = require('remote');
-const dialog = remote.require('dialog');
+const remote        = require('remote');
+const dialog        = remote.require('dialog');
 const BrowserWindow = remote.BrowserWindow ;
-const mainWindow = BrowserWindow.getFocusedWindow() ;
-const extname = require('path').extname ;
+const mainWindow    = BrowserWindow.getFocusedWindow() ;
+const path          = require('path');
 
 // Functions
 
@@ -38,7 +38,7 @@ var process_request = function ( source_path , target_path ) {
   // Is this necessary/ good? Or should we allow the user to specify 
   // the file extension?
   // 
-  target_path = extname(target_path) === '.dmg' ?
+  target_path = path.extname(target_path) === '.dmg' ?
      target_path : target_path + '.dmg'
   ;
   if( target_path === undefined || source_path === undefined ) {
@@ -68,7 +68,16 @@ document.querySelector('.source_selector')
 
         document.querySelector('.source_path').innerHTML = result ;
         source_path = result ;
-        default_target_path = result + '.dmg' ;
+
+        // 
+        // If the user chose a directory that isn't root, set the target
+        // default name to be the source directory + .dmg.
+        // If the user did choose, root, keep 'untitled.dmg' since'/.dmg' 
+        // looks like a system file. 
+        //
+        default_target_path =  result === '/' ? 
+          default_target_path : result + '.dmg' 
+        ;
       }
     }) ;
   })
@@ -96,7 +105,35 @@ document.querySelector('.target_selector')
 
 document.querySelector('.button.submit')
   .addEventListener( 'click' , function(ev) {
-    process_request( source_path , target_path ) ;
+    // Trap for paths not yet selected.
+    if( target_path === undefined || source_path === undefined ) {
+      dialog.showErrorBox(
+        'Oops!' , 
+        'You must specify a path and a target.'  
+      )
+      return ;
+    }
+    dialog.showMessageBox(
+      mainWindow ,
+      {
+        title   : 'Are you sure?'  ,
+        type    : 'question'       ,
+        buttons : [ 'Yes' , 'No' ] ,
+        message : 'Please confirm the following details:\n\n' + 
+                  'Source directory :\n' + 
+                  source_path + '\n\n' + 
+                  'Disk image name:\n'+ 
+                  path.parse(target_path).base+'\n\n' + 
+                  'Disk image location:\n' +
+                  path.parse(target_path).dir +'\n\n' + 
+                  'Is this correct?'
+      },
+      function( value ){
+        if ( value === 0 /* 'Yes' */ ) {
+          process_request( source_path , target_path ) ;
+        }
+      }
+    );
   })
 ;
 
