@@ -3,11 +3,58 @@
   font-weight : 100 ;
 }
 
+.app {
+  height : 100vh ;
+  width  : 100vw ;
+
+  display : flex ;
+  flex-direction  : column ;
+  justify-content : space-between ;
+}
+
+.selector_area,
+.submit_area {
+  display : flex ;
+}
+
+.selector_area {
+  flex    : 1    ;
+  flex-direction : row ;
+  justify-content : center ;
+}
+
+.source_container, 
+.target_container {
+  flex : 1 ;
+
+  margin: 0 10% ;
+  margin-top : 10% ;
+  padding : 5% ;
+
+  border-radius : 5px ;
+  border : 1px solid gray ;
+  box-shadow : 1px 1px 1px black ;
+
+  background-color : rgb(128,128,128);
+
+  display : flex ;
+  flex-direction : column ;
+  justify-content : space-around; 
+}
+
+
+.submit_area {
+  flex-direction  : row ;
+  justify-content : center ;
+  padding : 10% ;
+}
+
 .button {
+  border-radius : 3px ;
   -webkit-touch-callout : none ;
   -webkit-user-select : none ;
   cursor : pointer ;
-  font-size : 2em ;
+  font-size : 1.5em ;
   background : -webkit-linear-gradient( 
                  rgba( 128, 128, 128, 0.1 ) , 
                  rgba( 128, 128, 128, 0.4)

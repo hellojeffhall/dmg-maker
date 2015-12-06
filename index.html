@@ -5,14 +5,23 @@
   <link rel='stylesheet' href='./css/style.css' >
 </head>
 <body>
+  <div class='app'>
+    <div class='selector_area'>
+      <div class='source_container'>
+        <span class='button source_selector' >Choose Source</span>
+        <div class='source_path'>Click above to specify a source folder.</div>
+      </div>
+      <div class='target_container'>
+        <span class='button target_selector' >Choose Destination</span>
+        <div class='target_path'>Click above to specify a source desitination for your disk image.</div>
+      </div>
+    </div>
 
-  <span class='button source_selector' >Choose Source</span>
-  <div class='source_path'>Click above to specify a source folder.</div>
+    <div class='submit_area'> 
+      <span class='button submit'>Make Disk Image</span>
+    </div>
+  </div>
 
-  <span class='button target_selector' >Choose Destination</span>
-  <div class='target_path'>Click above to specify a source desitination for your disk image.</div>
-
-  <span class='button submit'>Make Disk Image</span>
 
   <script>require('./js/script.js')</script>
 
