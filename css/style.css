@@ -1,0 +1,20 @@
+*{
+  font-family : helvetica ;
+  font-weight : 100 ;
+}
+
+.button {
+  -webkit-touch-callout : none ;
+  -webkit-user-select : none ;
+  cursor : pointer ;
+  font-size : 2em ;
+  background : -webkit-linear-gradient( 
+                 rgba( 128, 128, 128, 0.1 ) , 
+                 rgba( 128, 128, 128, 0.4)
+               )
+  ;
+  background-color : rgb( 236, 166, 91 ) ;
+  color : white ;
+  line-height : 1.5 ;
+  box-shadow : 1px 1px 5px black ;
+}
