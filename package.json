@@ -2,7 +2,7 @@
   "name": "dmg-maker",
   "version": "0.1.0",
   "description": "An application for creating a .dmg from a specificied folder.",
-  "main": "electron_loader.js",
+  "main": "./js/electron_loader.js",
   "scripts": {
     "start" : "electron ."
   },
