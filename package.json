@@ -1,0 +1,22 @@
+{
+  "name": "dmg-maker",
+  "version": "0.1.0",
+  "description": "An application for creating a .dmg from a specificied folder.",
+  "main": "electron_loader.js",
+  "scripts": {
+    "start" : "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrhall/dmg-maker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrhall/dmg-maker/issues"
+  },
+  "homepage": "https://github.com/jrhall/dmg-maker#readme",
+  "dependencies": {
+    "electron-prebuilt": "^0.35.4"
+  }
+}
